@@ -15,6 +15,7 @@ var quizContainer = document.getElementById("quiz-content");
 var beginButton = document.getElementById("begin-btn");
 var questionCounter = 0;
 var playerScore = 0;
+var questionDisplayEl;
 
 var quizQuestions = [{
   question:"In what year was JavaScript introduced?",
@@ -34,21 +35,20 @@ function startQuiz(){
 console.log("clicked");
 
 var starterBox = document.getElementById("quiz-starter");
-starterBox.remove();
-
-createQuestion();
+starterBox.remove()
+questionDisplayEl = document.createElement("div");
+questionDisplayEl.className = "question-display";
+newQuestion();
 }
-//Create new question
-function createQuestion(){
 
-  for (questionCounter; questionCounter < quizQuestions.length; questionCounter++){
+//Create new question
+function newQuestion(){
       
     //create the question header 
-      var questionDisplayEl = document.createElement("div");
-      questionDisplayEl.className = "question-display";
+;
       questionDisplayEl.innerHTML = "<h3 class='question-header'>"+ "Question " + (questionCounter + 1) + "</h3>";
 
-  //attach question number to html
+      //attach question number to html
       quizContainer.append(questionDisplayEl);
     
       var quizIndex = questionCounter;
@@ -69,41 +69,41 @@ function createQuestion(){
             btnId ++;
 
            function checkAnswer(){
+            
               console.log(this.id)
               console.log(quizQuestions[quizIndex].correct)
               if (this.id == quizQuestions[quizIndex].correct){
                 playerScore ++;
                 
-                questionEl.innerHTML = "<p id = answer-response> That's Correct! Your score is now " + playerScore + "! </p>"
+                questionEl.remove();
+                questionDisplayEl.innerHTML = "<p id = answer-response> That's Correct! Your score is now " + playerScore + "! </p>"
               
               }
               else {
                
-                questionEl.innerHTML = "<p id = answer-response> Wrong! Sorry! Your score is now " + playerScore + "</p>";
+                questionDisplayEl.innerHTML = "<p id = answer-response> Wrong! Sorry! Your score is " + playerScore + "</p>";
                 
               }
-              debugger;
-             
-             
+              
+              questionCounter ++;
+
+              var nextButtonEl = document.createElement("button");
+              nextButtonEl.id = "next-button";
+              nextButtonEl.innerText = "Next Question";
+              
+              questionDisplayEl.append(nextButtonEl);
+
+             nextButtonEl.addEventListener("click", newQuestion);
             }
-
-            
-          };
-          
+          };       
       }
-  }
- 
-;
-
-
-
-
-
 
 //buttons.addEventListener("click", checkAnswer);
 
 
 beginButton.addEventListener("click", startQuiz);
+
+
 
 
 
