@@ -16,6 +16,11 @@ var beginButton = document.getElementById("begin-btn");
 var questionCounter = 0;
 var playerScore = 0;
 var questionDisplayEl;
+var timerEl = document.getElementById("timer");
+var seconds;
+
+
+
 
 var quizQuestions = [{
   question:"In what year was JavaScript introduced?",
@@ -30,6 +35,8 @@ var quizQuestions = [{
   }
 ];
 
+
+
 //Clear window for quiz
 function startQuiz(){
 console.log("clicked");
@@ -38,14 +45,28 @@ var starterBox = document.getElementById("quiz-starter");
 starterBox.remove()
 questionDisplayEl = document.createElement("div");
 questionDisplayEl.className = "question-display";
+startTimer();
 newQuestion();
 }
 
+function startTimer(){
+  seconds = 59;
+  function tick(){
+    seconds--; 
+    timerEl.innerHTML = "Time left: " + seconds;
+    if (seconds > 0){
+      setTimeout(tick, 1000);
+    }
+  }
+  tick();
+};
+
 //Create new question
 function newQuestion(){
-      
+  //countdown timer
+
     //create the question header 
-;
+
       questionDisplayEl.innerHTML = "<h3 class='question-header'>"+ "Question " + (questionCounter + 1) + "</h3>";
 
       //attach question number to html
@@ -81,7 +102,7 @@ function newQuestion(){
               }
               else {
                
-                questionDisplayEl.innerHTML = "<p id = answer-response> Wrong! Sorry! Your score is " + playerScore + "</p>";
+                questionDisplayEl.innerHTML = "<p id = answer-response> Wrong! Sorry! Your score is now " + playerScore + "</p>";
                 
               }
               
@@ -97,6 +118,8 @@ function newQuestion(){
             }
           };       
       }
+  
+  
 
 //buttons.addEventListener("click", checkAnswer);
 
@@ -104,8 +127,7 @@ function newQuestion(){
 beginButton.addEventListener("click", startQuiz);
 
 
-
-
+function endGame(){};
 
 
 
