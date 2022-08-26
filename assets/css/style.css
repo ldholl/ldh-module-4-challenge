@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+    color: purple;
+    background-color: white;
+};
+
+#quiz-starter p {
+    color: purple;
+}
+
+#begin-btn {
+    color: white;
+    background-color: purple;
+    border: solid 5px rgb(46, 6, 46);
+    font-size: 60px;
+}
+
+.question-display {
+    color: purple;
+}
+.question-display p {
+    font-size: 40px;
+}
+.question-display button {
+    color: white;
+    background-color: purple;
+    font-size: 30px;
+    margin: 10px;
+    border: solid 5px rgb(46, 6, 46);
+}
+
